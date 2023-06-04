@@ -137,8 +137,8 @@ erDiagram
     }
     SENSOR ||--o{ MEASUREMENT : captures
     SENSOR {
-        int Id PK
-        string Kind
+        int Id
+        string Type
         string Name
     }
     MEASUREMENT {
