@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Cargo.Data.Application.Models.RequestDto;
 using Cargo.Data.Core.Enums;
+using Cargo.Data.Core.Models.Base;
 using Foo2Dto = Cargo.Data.Application.Models.RequestDto.Foo2;
 using Model = Cargo.Data.Core.Models;
 
@@ -42,7 +43,7 @@ public class Foo2DtoProfile : Profile
             .ReverseMap();
     }
 
-    private IEnumerable<Model.Sensor> GroupSensorDataBySensorType(
+    private IEnumerable<BaseSensor> GroupSensorDataBySensorType(
         IEnumerable<Foo2Dto.SensorData>? sensorDataRecords,
         ResolutionContext ctx)
     {
@@ -54,7 +55,7 @@ public class Foo2DtoProfile : Profile
         {
             var sensorType = SensorTypeMap.MapFoo2SensorType(sensorTypeGroup.Key);
             var sensorMeasurements = ctx.Mapper.Map<ICollection<Model.Measurement>>(sensorTypeGroup);
-            Model.Sensor sensor = sensorType switch
+            BaseSensor sensor = sensorType switch
             {
                 SensorType.Temperature => new Model.TemperatureSensor { Measurements = sensorMeasurements, },
                 SensorType.Humidity => new Model.HumiditySensor { Measurements = sensorMeasurements, },

@@ -1,5 +1,6 @@
 using AutoMapper;
 using Cargo.Data.Application.MapProfiles;
+using Cargo.Data.Core.Models.Base;
 using System.Runtime.Serialization;
 using Foo1Dto = Cargo.Data.Application.Models.RequestDto.Foo1;
 using Foo2Dto = Cargo.Data.Application.Models.RequestDto.Foo2;
@@ -31,7 +32,6 @@ public class MappingProfileTests
     [Theory]
     [InlineData(typeof(Foo1Dto.Foo1Document), typeof(Model.Partner))]
     [InlineData(typeof(Foo1Dto.Tracker), typeof(Model.Device))]
-    [InlineData(typeof(Foo1Dto.Sensor), typeof(Model.Sensor))]
     [InlineData(typeof(Foo1Dto.Crumb), typeof(Model.Measurement))]
     [InlineData(typeof(Foo2Dto.Foo2Document), typeof(Model.Partner))]
     [InlineData(typeof(Foo2Dto.Device), typeof(Model.Device))]

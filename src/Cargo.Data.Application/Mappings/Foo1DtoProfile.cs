@@ -3,6 +3,7 @@ using Cargo.Data.Core.Enums;
 using Cargo.Data.Application.Models.RequestDto;
 using Foo1Dto = Cargo.Data.Application.Models.RequestDto.Foo1;
 using Model = Cargo.Data.Core.Models;
+using Cargo.Data.Core.Models.Base;
 
 namespace Cargo.Data.Application.MapProfiles;
 
@@ -35,7 +36,7 @@ public class Foo1DtoProfile : Profile
 
     private void CreateSensorProfile()
     {
-        CreateMap<Foo1Dto.Sensor, Model.Sensor>()
+        CreateMap<Foo1Dto.Sensor, BaseSensor>()
             .Include<Foo1Dto.Sensor, Model.TemperatureSensor>()
             .Include<Foo1Dto.Sensor, Model.HumiditySensor>()
             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.Id))

@@ -1,6 +1,8 @@
-﻿namespace Cargo.Data.Core.Models;
+﻿using Cargo.Data.Core.Models.Base;
 
-public class Partner
+namespace Cargo.Data.Core.Models;
+
+public class Partner : BaseEntity
 {
     public int Id { get; set; }
 

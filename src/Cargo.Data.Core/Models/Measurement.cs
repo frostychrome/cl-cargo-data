@@ -1,6 +1,8 @@
-﻿namespace Cargo.Data.Core.Models;
+﻿using Cargo.Data.Core.Models.Base;
 
-public class Measurement
+namespace Cargo.Data.Core.Models;
+
+public class Measurement : BaseEntity
 {
     public DateTimeOffset Timestamp { get; set; }
 
