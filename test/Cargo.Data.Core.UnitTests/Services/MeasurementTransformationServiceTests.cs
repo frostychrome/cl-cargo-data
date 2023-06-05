@@ -47,7 +47,7 @@ public class MeasurementTransformationServiceTests : IClassFixture<EntityFixture
     public void Merge_ShouldThrow_WhenNull()
     {
         var service = CreateServiceInstance();
-        FluentActions.Invoking(() => service.Merge(default).ToList())
+        FluentActions.Invoking(() => service.Merge(null).ToList())
             .Should().Throw<ArgumentNullException>();
     }
 

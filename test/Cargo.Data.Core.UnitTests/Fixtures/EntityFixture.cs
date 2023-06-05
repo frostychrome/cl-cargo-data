@@ -1,7 +1,4 @@
-﻿
-
-using Cargo.Data.Core.Enums;
-using Cargo.Data.Core.Models;
+﻿using Cargo.Data.Core.Models;
 using Cargo.Data.Core.Models.Base;
 
 namespace Cargo.Data.Core.UnitTests.Fixtures;

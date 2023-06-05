@@ -4,5 +4,5 @@ public class Crumb
 {
     public DateTimeOffset CreatedDtm { get; set; }
 
-    public float Value { get; set; }
+    public double Value { get; set; }
 }

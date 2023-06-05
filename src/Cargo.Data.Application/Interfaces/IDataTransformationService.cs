@@ -1,6 +1,13 @@
-﻿namespace Cargo.Data.Application.Interfaces;
+﻿using Cargo.Data.Application.Interfaces.DataHandlers;
+
+namespace Cargo.Data.Application.Interfaces;
 
 public interface IDataTransformationService
 {
-    void MergeAndSummarize(string source1, string source2, string output);
+    /// <summary>
+    /// Merges and summarizes partner data feeds from multiple data sources.
+    /// </summary>
+    /// <param name="partnerDataSources">Input data sources.</param>
+    /// <param name="summaryDestination">Destination location for summarized data.</param>
+    Task MergeAndSummarizePartnerDataAsync(IEnumerable<IDataStore> partnerDataSources, IDataStore summaryDestination);
 }

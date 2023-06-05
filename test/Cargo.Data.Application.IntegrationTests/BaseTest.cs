@@ -1,5 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Cargo.Data.Infrastructure;
 
 namespace Cargo.Data.Application.IntegrationTests;
 
@@ -14,7 +15,9 @@ public class BaseTest
             {
                 services.AddLogging();
                 services.AddOptions();
+                services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
                 services.RegisterApplicationServices();
+                services.RegisterInfrastructureServices();
             })
             .Build();
     }

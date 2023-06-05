@@ -6,5 +6,5 @@ public class SensorData
 
     public DateTimeOffset? DateTime { get; set; }
     
-    public float Value { get; set; }
+    public double Value { get; set; }
 }

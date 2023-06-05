@@ -1,4 +1,8 @@
 ﻿using Cargo.Data.Application.Interfaces;
+using Cargo.Data.Application.Interfaces.DataHandlers;
+using Cargo.Data.Application.Models.RequestDto.Foo1;
+using Cargo.Data.Application.Models.RequestDto.Foo2;
+using Cargo.Data.Application.Models.ResponseDto;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
@@ -14,13 +18,24 @@ public class DataTransformationServiceTests: IClassFixture<BaseTest>
     }
 
     [Fact()]
-    public async void MergeAndSummarizeTest()
+    public async Task MergeAndSummarizeTest()
     {
-        File.Delete("merged.json");
+        var outputFilePath = @"SampleData\DeviceMeasurementSummary.json";
+        File.Delete(outputFilePath);
 
-        var dataTransformationService = Host.Services.GetService<IDataTransformationService>();
-        dataTransformationService?.MergeAndSummarize("foo1.json", "foo2.json", "merged.json");
+        var dataStoreFactory = Host.Services.GetService<IDataStoreFactory>() ?? throw new Exception($"Could not resolve {nameof(IDataStoreFactory)}");
+        var dataTransformationService = Host.Services.GetService<IDataTransformationService>() ?? throw new Exception($"Could not resolve {nameof(IDataTransformationService)}");
 
-        Assert.True(File.Exists("merged.json"));
+        var dataStores = new[]
+            {
+                dataStoreFactory.CreateLocalJsonFileDataStore<Foo1Document>(@"SampleData\DeviceDataFoo1.json"),
+                dataStoreFactory.CreateLocalJsonFileDataStore<Foo2Document>(@"SampleData\DeviceDataFoo2.json"),
+            };
+
+        var summaryDataStore = dataStoreFactory.CreateLocalJsonFileDataStore<DeviceMeasurementSummary>(outputFilePath);
+
+        await dataTransformationService.MergeAndSummarizePartnerDataAsync(dataStores, summaryDataStore);
+
+        Assert.True(File.Exists(outputFilePath));
     }
 }
