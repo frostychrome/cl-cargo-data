@@ -4,7 +4,7 @@ namespace Cargo.Data.Core.Models;
 
 public class Device: BaseEntity
 {
-    public int? Id { get; set; }
+    public int Id { get; set; }
 
     public string Name { get; set; } = string.Empty;
 
